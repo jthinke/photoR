@@ -19,7 +19,7 @@ phenology_app(dat = attendance, rdat = repro, tabletype = "Raw", degf = 10)
 A data frame with results
 }
 \description{
-Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success.
+Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success. The app requests you input the data as a .csv file. To run this file indepentently, you will need to import the .csv and format the date field to POSIXct appropriately.
 }
 \examples{
 phenology_app<-function(dat=test_att, rdat=test_repro, tabletype="Raw", degf=10)

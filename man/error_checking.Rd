@@ -15,7 +15,7 @@ error_checking(dat1 = dat, dat2 = rdat)
 A list with information about the nature and location (row) of suspected errors in each data file
 }
 \description{
-This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered
+This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered.This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
 }
 \examples{
 error_checking(dat1=test_att, dat2=test_repro)

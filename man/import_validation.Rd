@@ -15,7 +15,7 @@ import_validation(dat1, dat2)
 A list of errors in data headings
 }
 \description{
-Function to check input data headers for compatibility with the app. Returns information if required headers are missing.
+Function to check input data headers for compatibility with the app. Returns information if required headers are missing. This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
 }
 \examples{
 import_validation(dat1=test_att, dat2=test_repro)
