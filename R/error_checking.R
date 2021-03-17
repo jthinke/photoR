@@ -1,3 +1,14 @@
+#' eerror_checking
+#'
+#' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the followng headers (case senstive):SPLIT_YEAR,	ROOKERY,COLONY,	CAMERA,	SPP, NEST,	DATE (m/d/y), and	MAXN 
+#' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case senstive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,  
+#DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE 
+#
+#'
+#' @return A list with information about the nature and location (row) of suspected errors in each data file
+#' @export
+#'
+#' @examples
 error_checking<-function(dat1=dat, dat2=rdat){
 # this function created to run basic checks on data formatting to help analysts
 #Dt<-"%m/%d/%Y"  

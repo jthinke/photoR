@@ -1,6 +1,6 @@
 Package: photoR
 Type: Package
-Title: Estimate phenology and reproductive success from annotated time lapse imagery files.
+Title: Estimate phenology and reproductive success from annotated time lapse imagery files
 Version: 0.1.0
 Author: Jefferson HInke
 Maintainer: Jefferson Hinke <Jefferson.Hinke@noaa.gov>
