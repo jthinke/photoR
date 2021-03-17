@@ -1,8 +1,10 @@
-#' eerror_checking
+#' error_checking 
+#' 
+#' This function checks the input data frames for common data entry errors and returns information to support analyst in cleaning the data files if error are encountered
 #'
-#' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the followng headers (case senstive):SPLIT_YEAR,	ROOKERY,COLONY,	CAMERA,	SPP, NEST,	DATE (m/d/y), and	MAXN 
-#' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case senstive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,  
-#DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE 
+#' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
+#' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,  
+#DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
 #
 #'
 #' @return A list with information about the nature and location (row) of suspected errors in each data file
