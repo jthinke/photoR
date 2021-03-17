@@ -2,18 +2,21 @@
 % Please edit documentation in R/import_validation.R
 \name{import_validation}
 \alias{import_validation}
-\title{Check column headers for compatibility}
+\title{import_validation}
 \usage{
 import_validation(dat1, dat2)
 }
 \arguments{
-\item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the followng headers (case senstive):SPLIT_YEAR,    ROOKERY,COLONY,    CAMERA,    SPP, NEST,    DATE (m/d/y), and    MAXN}
+\item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
 
-\item{dat2}{A data frame of nest content observations. The data frame shoulhd have the following headers (case senstive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,}
+\item{dat2}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
 }
 \value{
 A list of errors in data headings
 }
 \description{
-Check column headers for compatibility
+Function to check input data headers for compatibility with the app. Returns information if required headers are missing.
+}
+\examples{
+import_validation(dat1=test_att, dat2=test_repro)
 }

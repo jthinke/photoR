@@ -2,18 +2,21 @@
 % Please edit documentation in R/error_checking.R
 \name{error_checking}
 \alias{error_checking}
-\title{eerror_checking}
+\title{error_checking}
 \usage{
 error_checking(dat1 = dat, dat2 = rdat)
 }
 \arguments{
-\item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the followng headers (case senstive):SPLIT_YEAR,    ROOKERY,COLONY,    CAMERA,    SPP, NEST,    DATE (m/d/y), and    MAXN}
+\item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
 
-\item{dat2}{A data frame of nest content observations. The data frame should have the following headers (case senstive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,}
+\item{dat2}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
 }
 \value{
 A list with information about the nature and location (row) of suspected errors in each data file
 }
 \description{
-eerror_checking
+This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered
+}
+\examples{
+error_checking(dat1=test_att, dat2=test_repro)
 }

@@ -2,21 +2,21 @@
 % Please edit documentation in R/phenology_app.R
 \name{phenology_app}
 \alias{phenology_app}
-\title{Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success.}
+\title{phenology_app}
 \usage{
 phenology_app(dat = attendance, rdat = repro, tabletype = "Raw", degf = 10)
 }
 \arguments{
-\item{dat}{A data frame of adult attendance at each nest of interest. The data from should have the followng headers (case senstive):SPLIT_YEAR,    ROOKERY,COLONY,    CAMERA,    SPP, NEST,    DATE (m/d/y), and    MAXN}
+\item{dat}{A data frame of adult attendance at each nest of interest. The data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
 
-\item{rdat}{A data frame of nest content observations. The data frame shoulhd have the following headers (case senstive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,}
+\item{rdat}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
 
 \item{tabletype}{A character vector indicating output of interest, either "Raw", "CEMP Protocol A6b", or "CEMP Protocol A9"}
 
 \item{degf}{numeric value for degrees of freedom used in the smooth.spline function}
 }
 \value{
-a data frame with results
+A data frame with results
 }
 \description{
 Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success.

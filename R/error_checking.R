@@ -1,16 +1,15 @@
 #' error_checking 
 #' 
-#' This function checks the input data frames for common data entry errors and returns information to support analyst in cleaning the data files if error are encountered
+#' This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered
 #'
 #' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
-#' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,  
-#DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
+#' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
 #
 #'
 #' @return A list with information about the nature and location (row) of suspected errors in each data file
 #' @export
 #'
-#' @examples
+#' @examples error_checking(dat1=test_att, dat2=test_repro)
 error_checking<-function(dat1=dat, dat2=rdat){
 # this function created to run basic checks on data formatting to help analysts
 #Dt<-"%m/%d/%Y"  
