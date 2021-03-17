@@ -1,5 +1,13 @@
-
-# check column headers
+#' Check column headers for compatibility
+#'
+#' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the followng headers (case senstive):SPLIT_YEAR,	ROOKERY,COLONY,	CAMERA,	SPP, NEST,	DATE (m/d/y), and	MAXN 
+#' @param dat2 A data frame of nest content observations. The data frame shoulhd have the following headers (case senstive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,  
+#DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE 
+#'
+#' @return A list of errors in data headings
+#' @export
+#'
+#' @examples
 import_validation<-function(dat1, dat2){
 #import_validation<-function(dat=dat1, type="att"){
   ticker<-1
