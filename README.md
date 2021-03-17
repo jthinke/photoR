@@ -1,6 +1,6 @@
 # photoR
-R Shiny app for estimating phenology and reproductive success from annotated time lapse image data
-Functional app was last updated 27 April 2020 with fixes enabling downloading.
+R Shiny app for estimating phenology and reproductive success from annotated time lapse image data.
+Code was last updated 27 April 2020 to fix bugs for downloading results.
 
 ## Quick instructions 
 
