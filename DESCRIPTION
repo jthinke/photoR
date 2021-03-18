@@ -12,3 +12,5 @@ LazyData: true
 URL: https://github.com/jthinke/photoR
 BugReports: https://github.com/jthinke/photoR/issues
 RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)

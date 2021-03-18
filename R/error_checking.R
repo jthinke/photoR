@@ -1,5 +1,5 @@
-#' error_checking 
-#' 
+#' error_checking
+#'
 #' This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered.This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
 #'
 #' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
@@ -7,13 +7,12 @@
 #
 #'
 #' @return A list with information about the nature and location (row) of suspected errors in each data file
-#' @export
 #'
-#' @examples error_checking(dat1=test_att, dat2=test_repro)
-error_checking<-function(dat1=dat, dat2=rdat){
+#' @usage error_checking(dat1=test_att, dat2=test_repro)
+error_checking<-function(dat1, dat2){
 # this function created to run basic checks on data formatting to help analysts
-#Dt<-"%m/%d/%Y"  
- 
+#Dt<-"%m/%d/%Y"
+
 #dat1<-read.csv(file="test_att.csv", stringsAsFactors=FALSE, header=TRUE)
 #dat1$DATE<-lubridate::ymd(paste(dat1$YR, dat1$MON, dat1$DAY), tz="GMT")
 #dat1$DATE<-as.POSIXct(strptime(dat1$DATE, format=Dt), tz="GMT")

@@ -6,12 +6,6 @@
 \usage{
 photoR()
 }
-\value{
-
-}
 \description{
 Run the photoR Shiny App
-}
-\examples{
-photoR()
 }

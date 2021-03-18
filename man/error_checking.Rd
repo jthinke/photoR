@@ -4,7 +4,7 @@
 \alias{error_checking}
 \title{error_checking}
 \usage{
-error_checking(dat1 = dat, dat2 = rdat)
+error_checking(dat1=test_att, dat2=test_repro)
 }
 \arguments{
 \item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
@@ -16,7 +16,4 @@ A list with information about the nature and location (row) of suspected errors 
 }
 \description{
 This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered.This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
-}
-\examples{
-error_checking(dat1=test_att, dat2=test_repro)
 }

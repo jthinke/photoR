@@ -1,28 +1,24 @@
 #' phenology_app
-#' 
-#' Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success. The app requests you input the data as a .csv file. To run this file indepentently, you will need to import the .csv and format the date field to POSIXct appropriately. 
+#'
+#' Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success. The app requests you input the data as a .csv file. To run this file indepentently, you will need to import the .csv and format the date field to POSIXct appropriately.
 #'
 #' @param dat A data frame of adult attendance at each nest of interest. The data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
 #' @param rdat A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
 #' @param tabletype A character vector indicating output of interest, either "Raw", "CEMP Protocol A6b", or "CEMP Protocol A9"
 #' @param degf numeric value for degrees of freedom used in the smooth.spline function
 #'
-#' @return A data frame with results
-#' @export
+#' @return A data frame with resultsA9
 #'
-#' @examples phenology_app<-function(dat=test_att, rdat=test_repro, tabletype="Raw", degf=10)
-phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
+#' @usage phenology_app<-function(dat=test_att, rdat=test_repro, tabletype="Raw", degf=10)
+phenology_app<-function(dat, rdat, tabletype="Raw", degf=10){
   # attendance is a dataframe of attendance data organized with headers to identify SPLIT_YEAR,	ROOKERY,	COLONY,	CAMERA,	SPP,	NEST,	DATE (m/d/y), and	MAXN
-  # repro is a dataframe of nest content observations organized with headers to identify SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,  
+  # repro is a dataframe of nest content observations organized with headers to identify SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,
   #DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE
-  #
-  # require some packages
-  library(lubridate)
   #
   # first step is to error check data entry using custom function "error_checking"
   #out<-error_checking(dat1=dat, dat2=rdat)
   #out<-as.data.frame(do.call("rbind", out))
-  # 
+  #
   # if errors in the data were found, terminate app and display errors
   #if(length(out)==0){
     # set up some summary functions for later
@@ -116,16 +112,16 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
           # bit to examine only initial 6 weeks of data
           if(dim(ttt)[1]>42){
             # for longer time series that are cut to 42 days
-            ttt<-ttt[1:42,] # CID should occur within first few weeks of attendance data collection 
+            ttt<-ttt[1:42,] # CID should occur within first few weeks of attendance data collection
             if(max(ttt$y==1)){
-              # no observations of 2 adults on the nest precludes estimation based on attendance. 
-              switch.out[j]<-NA 
+              # no observations of 2 adults on the nest precludes estimation based on attendance.
+              switch.out[j]<-NA
               switch<-NA
-            } else {  
+            } else {
               # where there are obs of 2 adults in the window
               ttt<-ttt[ttt$z==1,] # force switch to occur when obs goes from 2 to 1
               if(dim(ttt)[1]>0){
-                switch<-ttt$x[ttt$y==min(ttt$y)] # select minimum slope 
+                switch<-ttt$x[ttt$y==min(ttt$y)] # select minimum slope
                 #
                 # format switch value as date
                 switch<-as.POSIXct(as.Date(switch/(60*60*24), origin="1970-1-1"))
@@ -151,7 +147,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
                   eobs.dates[j]<-min(eobs.dat)
                   eobs1.dates[j]<-min(eobs.dat)
                 } else {
-                  # if no egg observations were made, add 10 days to the estimated CID(switch date) 
+                  # if no egg observations were made, add 10 days to the estimated CID(switch date)
                   # note that the above addition of 10 days is  as a placeholder only to simplify later calculations
                   lay.dates[j]<-NA
                   hatch.dates[j]<-NA
@@ -170,8 +166,8 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
             }
           } else {
             if(max(ttt$y==1)){
-              # no observations of 2 adults on the nest precludes estimation based on attendance. 
-              switch.out[j]<-NA 
+              # no observations of 2 adults on the nest precludes estimation based on attendance.
+              switch.out[j]<-NA
               lay.dates[j]<-NA
               hatch.dates[j]<-NA
               eobs.dates[j]<-NA
@@ -180,7 +176,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
             } else {
               # for any record shorter than 42 days
               ttt<-ttt[ttt$z==1,] # force switch to occur when obs goes from 2 to 1
-              switch<-ttt$x[ttt$y==min(ttt$y)] # select minimum slope 
+              switch<-ttt$x[ttt$y==min(ttt$y)] # select minimum slope
               #
               # format switch value as date
               switch<-as.POSIXct(as.Date(switch/(60*60*24), origin="1970-1-1"))
@@ -209,11 +205,11 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
                 eobs.dates[j]<-min(eobs.dat)
                 eobs1.dates[j]<-min(eobs.dat)
               } else {
-                # if no egg observations were made, add 10 days to the estimated CID(switch date) 
+                # if no egg observations were made, add 10 days to the estimated CID(switch date)
                 eobs.dates[j]<-switch+10*60*60*24
                 eobs1.dates[j]<-NA
               }
-            
+
            }
         }
       } else {
@@ -251,7 +247,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       #print(summary(nest.rdat))
       obs.lay<-na.omit(data.frame(date=nest.rdat$DATE, lay=nest.rdat$LAY))
       if(dim(obs.lay)[1]>0){
-        observed.lay<-min(obs.lay$date, na.rm=TRUE)  
+        observed.lay<-min(obs.lay$date, na.rm=TRUE)
       } else {
         observed.lay<-NA
       }
@@ -280,7 +276,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       JCID<-as.POSIXct(as.Date(CID/(60*60*24), origin="1970-1-1"))
       JCID<-lubridate::yday(JCID)
       # ensure the JCID is continuous over the new year
-      # first get the last day of the year (assuming only data from one field season are used) 
+      # first get the last day of the year (assuming only data from one field season are used)
       Ndays<-max(JCID)
       JCID<-ifelse(JCID<100, JCID+Ndays, JCID)
       ORIG.CID<-CID
@@ -364,7 +360,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       prod.dat<-data.frame(Chick=app_out$N_Hatch
                            , Creche=app_out$N_Creche)
       prod.dat<-apply(prod.dat, 1, max)
-      app_out$N_Hatch<-prod.dat 
+      app_out$N_Hatch<-prod.dat
       #write.csv(app_out, file="app_out_raw.csv")
     }
     if(tabletype=="CEMP Protocol A6b"){
@@ -402,9 +398,9 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         # assume that the differce from the number of nests is then the number of nests with 1 egg clutches
         # If the data set only as nests with the same number of eggs, (either 1 or 2 in all nests)
         # then you need to tell the code to count the missing nests - tapply won't, by itself, know to count 0 for the nests that aren't present
-        # setting the levels of the nests forces that level to be counted. 
+        # setting the levels of the nests forces that level to be counted.
         if(length(unique(outa$neggs))==1){
-          outa$neggsf<-ordered(outa$neggs, levels=c(1,2)) 
+          outa$neggsf<-ordered(outa$neggs, levels=c(1,2))
           r1819<-tapply(outa$NEST, list(outa$neggsf, outa$SPP), length)
         } else {
           r1819<-tapply(outa$NEST, list(outa$neggs, outa$SPP), length)
@@ -418,7 +414,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         out$nchicks<-prod.dat
         outa<-out[out$nchicks>=1,]
         if(length(unique(outa$nchicks))==1){
-          outa$nchicksf<-ordered(outa$nchicks, levels=c(1,2)) 
+          outa$nchicksf<-ordered(outa$nchicks, levels=c(1,2))
           r2021<-tapply(outa$nchicks, list(outa$nchicksf, outa$SPP), sum)
         } else {
           r2021<-tapply(outa$nchicks, list(outa$nchicks, outa$SPP), sum)
@@ -428,13 +424,13 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         # cell 23 is the count of nests raising 2 chicks to creche
         outa<-out[out$CRECHE>=1,]
         if(length(unique(outa$CRECHE))==1){
-          outa$ncrechef<-ordered(outa$CRECHE, levels=c(1,2)) 
+          outa$ncrechef<-ordered(outa$CRECHE, levels=c(1,2))
           r2223<-tapply(outa$NEST, list(outa$ncrechef,outa$SPP), length)
         } else {
           r2223<-tapply(outa$NEST, list(outa$CRECHE,outa$SPP), length)
         }
         r2223<-ifelse(is.na(r2223), 0, r2223)
-        # cell 24 is the mean number of nests reared to creche per nest. 
+        # cell 24 is the mean number of nests reared to creche per nest.
         # cell 25 is the sd of the the mean calculated above.
         # here, we assume the camera is the unit from which to calculate a mean
         if(n.cameras==1){
@@ -443,7 +439,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         } else {
           est.mbar<-tapply(out$CRECHE, list(out$CAMERA, out$SPP), mean.func)
           r24<-apply(est.mbar,2, mean.func)
-          r25<-apply(est.mbar,2, sd.func)  
+          r25<-apply(est.mbar,2, sd.func)
         }
         #est.mbar<-tapply(out$CRECHE, list(out$CAMERA, out$SPP), mean.func)
         #r22<-apply(est.mbar,2, mean.func)
@@ -464,10 +460,10 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       # create A9 data from the input and output files
       # this requires a 5-day interval in which to bin estimated CID, HATCH, and CRECHE
       d1<-min(dat$DATE)
-      d1<-as_date(d1)
+      d1<-as.Date(d1)
       dend<-max(out$CRECHE.DATE, na.rm=TRUE)
-      dend<-as_date(dend)
-      dseq<-seq(ymd(d1), ymd(dend), by="day")
+      dend<-as.Date(dend)
+      dseq<-seq(lubridate::ymd(d1), lubridate::ymd(dend), by="day")
       n.out<-ceiling(length(dseq)/5)
       n.out2<-ceiling(length(dseq))
       dseq<-as.character(dseq)
@@ -478,46 +474,46 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       ints$DATE<-as.character(ints$DATE)
       keep<-seq(from=1, by=5, to=n.out2)
       dseqch<-ints$DATE[keep]
-      
+
       # now estimate timeline of CID
-      
+
       tttt<-data.frame(SPP=out$SPP, DATE=as.character(out$CID), N_Eggs=out$EGGS)
       tttt$DATE<-as.character(tttt$DATE)
       tttt<-na.omit(tttt)
-      
+
       intsm<-merge(tttt, ints, by="DATE", all=TRUE)
       intsm$egg<-ifelse(is.na(intsm$N_Eggs),0,1)
       c1<-tapply(intsm$egg, list(intsm$GROUP, intsm$SPP), sum)
       nnests<-colSums(c1, na.rm=TRUE)
-    
+
         # now for female departure
-      
+
       tttt<-data.frame(SPP=out$SPP, DATE=as.character(out$SWITCH), SWITCH=out$SWITCH)
       tttt$DATE<-as.character(tttt$DATE)
       tttt<-na.omit(tttt)
-      
+
       intsm<-merge(tttt, ints, by="DATE", all=TRUE)
       intsm$switch<-ifelse(is.na(intsm$SWITCH),0,1)
       c2<-tapply(intsm$switch, list(intsm$GROUP, intsm$SPP), sum)
       nswitch<-colSums(c2, na.rm=TRUE)
-      
+
       # now for hatching
-      
+
       tttt<-data.frame(SPP=out$SPP, DATE=as.character(out$HATCH), N_Hatch=out$CHICKS)
       tttt$DATE<-as.character(tttt$DATE)
       tttt<-na.omit(tttt)
-      
+
       intsm<-merge(tttt, ints, by="DATE", all=TRUE)
       intsm$hatch<-ifelse(is.na(intsm$N_Hatch),0,1)
       c3<-tapply(intsm$hatch, list(intsm$GROUP, intsm$SPP), sum)
       nhatch<-colSums(c3,na.rm=TRUE)
-      
+
       # now for creche
-      
+
       tttt<-data.frame(SPP=out$SPP, DATE=as.character(out$CRECHE.DATE), N_Creche=out$CRECHE)
       tttt$DATE<-as.character(tttt$DATE)
       tttt<-na.omit(tttt)
-      
+
       intsm<-merge(tttt, ints, by="DATE", all=TRUE)
       intsm$creche<-ifelse(is.na(intsm$N_Creche),0,1)
       c4<-tapply(intsm$creche, list(intsm$GROUP, intsm$SPP), sum)
@@ -533,14 +529,14 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       r1<-c("Date", rep(Spps, 6))
       outA9<-rbind(r1, outA9)
       names(outA9)<-NAMES
-      
+
       # create the summary data for category B data
       row1<-c("Total monitored", rep(NA,n.spp), nnests, nswitch, nhatch, ncreche,rep(NA, n.spp))
       row2<-c("Total failed", rep(NA, n.spp), efails, rep(NA, n.spp), hfails, rep(0,n.spp),rep(NA, n.spp))
       row1<-data.frame(rbind(row1, row2))
       names(row1)<-names(outA9)
       outA9<-rbind(outA9, row1)
-      
+
       # now create the category C summary data
       medlay<-tapply(out$CID, out$SPP, median.func)
       medlay<-as.character(as.Date(medlay, origin="1970-1-1"))
@@ -550,10 +546,10 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       medhatch<-as.character(as.Date(medhatch, origin="1970-1-1"))
       medcreche<-tapply(out$CRECHE.DATE, out$SPP, median.func)
       medcreche<-as.character(as.Date(medcreche, origin="1970-1-1"))
-      
+
       #mode
       # the following code for computing the mode was taken from RBloggers
-      Mode = function(x){ 
+      Mode = function(x){
         ta = table(x)
         tam = max(ta)
         if (all(ta == tam))
@@ -576,7 +572,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         }
         modlay<-mlay
       }
-      modlay<-as.character(as.Date(modlay, origin="1970-1-1")) 
+      modlay<-as.character(as.Date(modlay, origin="1970-1-1"))
       # for female depature
       modswitch<-tapply(as.character(out$SWITCH), out$SPP, Mode)
       if(is.list(modswitch)){
@@ -588,7 +584,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         }
         modswitch<-mswitch
       }
-      modswitch<-as.character(as.Date(modswitch, origin="1970-1-1")) 
+      modswitch<-as.character(as.Date(modswitch, origin="1970-1-1"))
       # now hatch
       modhatch<-tapply(as.character(out$HATCH), out$SPP, Mode)
       if(is.list(modhatch)){
@@ -600,7 +596,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         }
         modhatch<-mlay
       }
-      modhatch<-as.character(as.Date(modhatch, origin="1970-1-1")) 
+      modhatch<-as.character(as.Date(modhatch, origin="1970-1-1"))
       modcreche<-tapply(as.character(out$CRECHE.DATE), out$SPP, Mode)
       if(is.list(modcreche)){
         #implies the Mode found multiple values with the same frequency, i.e., there is no true mode.
@@ -612,7 +608,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
         modcreche<-mlay
       }
       #print(modcreche)
-      modcreche<-as.character(as.Date(modcreche, origin="1970-1-1")) 
+      modcreche<-as.character(as.Date(modcreche, origin="1970-1-1"))
       #
       minlay<-tapply(out$CID, out$SPP, min.func)
       minlay<-as.character(as.Date(minlay, origin="1970-1-1"))
@@ -645,7 +641,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       tts$Sa<-as.POSIXct(strptime(tts$Sa, format="%Y-%m-%d"))
       qS<-tapply(tts$Sa, tts$SPP, qfunc)
       qS<-as.character(as.Date(qS/(24*60*60), origin="1970-1-1"))
-      
+
       # 1/3 eggs hatching
       qfunc<-function(x){quantile(x, 0.333)}
       tth<-out[!is.na(out$HATCH),]
@@ -660,7 +656,7 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
       tth$CRECHEa<-as.POSIXct(strptime(tth$CRECHEa, format="%Y-%m-%d"))
       qCreche<-tapply(na.omit(tth$CRECHEa), tth$SPP, qfunc)
       qCreche<-as.character(as.Date(qCreche/(24*60*60), origin="1970-1-1"))
-      
+
       row1<-c("Median Dates",rep(NA, n.spp), medlay, medswitch, medhatch, medcreche,rep(NA, n.spp))
       row2<-c("Mode Dates", rep(NA, n.spp), modlay, modswitch, modhatch,modcreche, rep(NA, n.spp))
       row3<-c("First Dates", rep(NA, n.spp), minlay, minswitch, minhatch, mincreche,rep(NA, n.spp))
@@ -688,6 +684,6 @@ phenology_app<-function(dat=attendance, rdat=repro, tabletype="Raw", degf=10){
   #  app_out<-do.call("rbind", out)
   #  return(app_out)
   #}
-  return(app_out)  
+  return(app_out)
   # end of file
 }
