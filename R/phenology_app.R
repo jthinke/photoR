@@ -2,8 +2,8 @@
 #'
 #' Function to process adult attendance of nest data and nest content data to estimate phenology and reproductive success. The app requests you input the data as a .csv file. To run this file indepentently, you will need to import the .csv and format the date field to POSIXct appropriately.
 #'
-#' @param dat A data frame of adult attendance at each nest of interest. The data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
-#' @param rdat A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.
+#' @param dat A data frame of adult attendance at each nest of interest. The data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MON, YR.
+#' @param rdat A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
 #' @param tabletype A character vector indicating output of interest, either "Raw", "CEMP Protocol A6b", or "CEMP Protocol A9"
 #' @param degf numeric value for degrees of freedom used in the smooth.spline function
 #'
