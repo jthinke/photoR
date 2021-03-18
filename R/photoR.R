@@ -5,11 +5,11 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples photoR()
 photoR<-function() {
   appDir <- system.file("shiny-examples", "photoR", package = "photoR")
   if (appDir == "") {
-    stop("Could not find example directory. Try re-installing `mypackage`.", call. = FALSE)
+    stop("Could not find example directory. Try re-installing `photoR`.", call. = FALSE)
   }
 
   shiny::runApp(appDir, display.mode = "normal")
