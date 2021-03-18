@@ -18,39 +18,39 @@ ui<-fluidPage(
     )
   )
   ),
-  
+
   br(),
-  
+
   fluidRow(
   column(3),
   column(6, img(height=300, width=800, src="Lifestages.jpg"))
   ),
-  
+
   br(),
-  
+
   fluidRow(
-    column(4, 
+    column(4,
       p("Attendance data must have the following headers: 'YEAR','CAMERA', 'NEST', 'SPP','DATE', and 'MAXN'. The 'date' may also be specified in 'YR', 'MON', and 'DAY' headers.")
     ),
-    column(4, 
+    column(4,
       p("Nest content data must have the following headers: 'YEAR', 'CAMERA', 'NEST', 'SPP', DATE', 'COPULATION','LAY',	'MAXE',	'HATCH',	'MAXC',and 'CRECHE'. The 'date' may also be specified in 'YR', 'MON', and 'DAY' headers.")
 
   ),
-    column(4, 
+    column(4,
       p("Specify the date format used in the input files.")
-         
+
   )
   ),
-  
+
   fluidRow(
-    column(4, 
+    column(4,
       fileInput(inputId="attendance", label="Choose attendance data (.csv format)",
             accept = c(
               "text/csv",
               "text/comma-separated-values,text/plain",
               ".csv"))
     ),
-    column(4, 
+    column(4,
       fileInput(inputId="repro", label="Choose nest content data (.csv format)",
             accept = c(
               "text/csv",
@@ -68,22 +68,22 @@ ui<-fluidPage(
       selectInput(inputId="table_type", label="Choose output format",
               choices= list("Raw","CEMP Protocol A6b", "CEMP Protocol A9"), selected="Raw")
     ),
-  
+
   column(6, downloadButton("downloadData", "Download results"),
          p("Download the table of results generated below.")
   )
 ),
-  
+
   br(),
-  
+
   tableOutput(outputId="result")
 )
 
 server<-function(input, output){
-  source('phenology_app.R') 
-  source('error_checking.R') 
-  source('import_validation.R') 
-  library(lubridate)
+  source('phenology_app.R')
+  source('error_checking.R')
+  source('import_validation.R')
+  #library(lubridate)
   reac_func_input<-reactive({
     req(input$attendance)
     req(input$repro)
@@ -95,43 +95,43 @@ server<-function(input, output){
      # check format
      error.out<-import_validation(dat1, dat2)
      validate(
-       need(length(error.out) == 0, 
+       need(length(error.out) == 0,
             message = paste(error.out, collapse = "\n"))
      )
      # if no error, format dates
      validate(
-       need(input$date_format!="None selected", 
+       need(input$date_format!="None selected",
             message = paste("Select appropriate date format from drop-down menu"))
      )
      dat1$DATE<-lubridate::ymd(paste(dat1$YR, dat1$MON, dat1$DAY), tz="GMT")
      dat2$DATE<-lubridate::ymd(paste(dat2$YR, dat2$MON, dat2$DAY), tz="GMT")
-     
+
     } else {
-      
+
       if(input$date_format=="m/d/y"){
-        Dt<-"%m/%d/%Y"  
+        Dt<-"%m/%d/%Y"
       }
       if(input$date_format=="d/m/y"){
-        Dt<-"%d/%m/%Y"  
+        Dt<-"%d/%m/%Y"
       }
       if(input$date_format=="y/m/d"){
-        Dt<-"%Y/%m/%d"  
+        Dt<-"%Y/%m/%d"
       }
       dat1<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
       dat2<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
       # check format
       error.out<-import_validation(dat1, dat2)
       validate(
-        need(length(error.out) == 0, 
+        need(length(error.out) == 0,
              message = paste(error.out, collapse = "\n"))
       )
       # if no error, format dates
       validate(
-        need(input$date_format!="None selected", 
+        need(input$date_format!="None selected",
              message = paste("Select appropriate date format from drop-down menu"))
       )
       dat1$DATE<-as.POSIXct(strptime(dat1$DATE, format=Dt), tz="GMT")
-      
+
       dat2$DATE<-as.POSIXct(strptime(dat2$DATE, format=Dt), tz="GMT")
     }
     #out
@@ -141,16 +141,16 @@ reac_func_output<-reactive({
   #output$result<-renderTable({
   req(input$table_type)
   dat.list <- reac_func_input()
-    
+
   # Error checking for basic data formating
   error.out <- error_checking(dat1=dat.list[[1]], dat2=dat.list[[2]])
-   
+
    validate(
-     need(length(error.out) == 0, 
+     need(length(error.out) == 0,
           message = rbind("Please fix the following errors before further analysis:", paste(error.out, collapse = "\n"))
    )
    )
-    
+
   out<-phenology_app(dat=dat.list[[1]], rdat=dat.list[[2]], tabletype=input$table_type)
   out
 })
