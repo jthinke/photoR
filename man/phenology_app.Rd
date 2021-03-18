@@ -4,12 +4,12 @@
 \alias{phenology_app}
 \title{phenology_app}
 \usage{
-phenology_app<-function(dat=test_att, rdat=test_repro, tabletype="Raw", degf=10)
+phenology_app<-function(dat, rdat, tabletype="Raw", degf=10)
 }
 \arguments{
-\item{dat}{A data frame of adult attendance at each nest of interest. The data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
+\item{dat}{A data frame of adult attendance at each nest of interest. The data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MON, YR.}
 
-\item{rdat}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
+\item{rdat}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
 
 \item{tabletype}{A character vector indicating output of interest, either "Raw", "CEMP Protocol A6b", or "CEMP Protocol A9"}
 
