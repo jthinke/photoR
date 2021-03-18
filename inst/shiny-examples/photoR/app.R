@@ -83,7 +83,7 @@ server<-function(input, output){
   source('phenology_app.R')
   source('error_checking.R')
   source('import_validation.R')
-  #library(lubridate)
+  library(lubridate)
   reac_func_input<-reactive({
     req(input$attendance)
     req(input$repro)
