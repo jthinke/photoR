@@ -20,7 +20,7 @@ library(photoR)
 ```
 3) run the app with `photoR()`
 
-4) There will be 2 data files to load. The first is the attendance data (e.g., [test_att.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_att.csv)) and the second is reproductive data (e.g, [test_repro.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_repro.csv)). Navigate to where the data are housed and allow upload. The app will automatically identify errors in your data formatting and print messages to the screen to help identify where data errors are likely.
+4) There will be 2 data files to load. The first is the attendance data (e.g., [test_att.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_att.csv)) and the second is reproductive data (e.g, [test_repro.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_repro.csv)). Navigate to where the data are housed locally for you and allow upload. The app will automatically identify errors in your data formatting and print messages to the screen to help identify where data errors are likely.
 
 5 Specify how the date field is input in the raw data files you just specified. For the test data linked above, it is "m/d/y'.
 
