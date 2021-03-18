@@ -6,8 +6,7 @@ Author: Jefferson HInke
 Maintainer: Jefferson Hinke <Jefferson.Hinke@noaa.gov>
 Description: Estimate phenology and reproductive success from annotated time lapse imagery files that contain daily information on adult attendnace and focal nests and episodic information on nest content and status.
 License: MIT + file LICENSE
-Imports: shiny,
-lubridate
+Imports: shiny,lubridate
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/jthinke/photoR
