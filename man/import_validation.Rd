@@ -4,7 +4,7 @@
 \alias{import_validation}
 \title{import_validation}
 \usage{
-import_validation(dat1, dat2)
+import_validation(dat1=test_att, dat2=test_repro)
 }
 \arguments{
 \item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MONTH, YEAR.}
@@ -16,7 +16,4 @@ A list of errors in data headings
 }
 \description{
 Function to check input data headers for compatibility with the app. Returns information if required headers are missing. This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
-}
-\examples{
-import_validation(dat1=test_att, dat2=test_repro)
 }
