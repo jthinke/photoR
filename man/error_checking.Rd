@@ -4,7 +4,7 @@
 \alias{error_checking}
 \title{error_checking}
 \usage{
-error_checking(test_att, test_repro)
+error_checking(dat1, dat2)
 }
 \arguments{
 \item{dat1}{A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
