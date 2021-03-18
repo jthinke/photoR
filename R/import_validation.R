@@ -7,7 +7,7 @@
 #'
 #' @return A list of errors in data headings
 #'
-#' @usage import_validation(dat1, dat2)
+#' @usage import_validation(test_att, test_repro)
 import_validation<-function(dat1, dat2){
 #import_validation<-function(dat=dat1, type="att"){
   ticker<-1

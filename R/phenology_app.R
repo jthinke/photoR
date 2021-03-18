@@ -9,7 +9,7 @@
 #'
 #' @return A data frame with resultsA9
 #'
-#' @usage phenology_app<-function(dat, rdat, tabletype="Raw", degf=10)
+#' @usage phenology_app(dat=test_att, rdat=test_repro, tabletype="Raw", degf=10)
 phenology_app<-function(dat, rdat, tabletype="Raw", degf=10){
   # attendance is a dataframe of attendance data organized with headers to identify SPLIT_YEAR,	ROOKERY,	COLONY,	CAMERA,	SPP,	NEST,	DATE (m/d/y), and	MAXN
   # repro is a dataframe of nest content observations organized with headers to identify SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST,
