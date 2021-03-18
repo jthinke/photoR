@@ -8,7 +8,7 @@
 #'
 #' @return A list with information about the nature and location (row) of suspected errors in each data file
 #'
-#' @usage error_checking(test_att, test_repro)
+#' @usage error_checking(dat1, dat2)
 error_checking<-function(dat1, dat2){
 # this function created to run basic checks on data formatting to help analysts
 #Dt<-"%m/%d/%Y"

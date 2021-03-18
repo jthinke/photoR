@@ -7,7 +7,7 @@
 #' @param tabletype A character vector indicating output of interest, either "Raw", "CEMP Protocol A6b", or "CEMP Protocol A9"
 #' @param degf numeric value for degrees of freedom used in the smooth.spline function
 #'
-#' @return A data frame with resultsA9
+#' @return A data frame with results
 #'
 #' @usage phenology_app(dat=test_att, rdat=test_repro, tabletype="Raw", degf=10)
 phenology_app<-function(dat, rdat, tabletype="Raw", degf=10){
