@@ -1,4 +1,4 @@
-library(shiny)
+library(shiny, lubridate)
 ui<-fluidPage(
   tags$head(
     tags$style(HTML("
@@ -80,10 +80,10 @@ ui<-fluidPage(
 )
 
 server<-function(input, output){
-  source('phenology_app.R')
-  source('error_checking.R')
-  source('import_validation.R')
-  library(lubridate)
+#  source('phenology_app.R')
+#  source('error_checking.R')
+#  source('import_validation.R')
+#  library(lubridate)
   reac_func_input<-reactive({
     req(input$attendance)
     req(input$repro)
