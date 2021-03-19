@@ -1,10 +1,10 @@
 # photoR
 R Shiny app for estimating phenology and reproductive success from annotated time lapse image data.
-Code was last updated 27 April 2020 to fix bugs for downloading results.
+Code was last updated 19 May 2021 with numerous updates to build an R package.
 
 ## Quick instructions 
 
-Simple instruction for running the photoR app from RStudio (1-7) or online [here](https://jefferson.shinyapps.io/photor2/) (4-7).
+Simple instruction for running the photoR app from RStudio (1-7) or online [here](https://jefferson.shinyapps.io/photor2/) (4-7). Note the online version has not yet been updated, but is functionally equivalent to the version available here. 
 
 1) install the 'shiny' and 'lubridate' and 'devtools' packages from a CRAN repository, if needed, and attach them. 
  ```r
