@@ -95,7 +95,7 @@ server<-function(input, output){
      dat<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
      rdat<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
      # check format
-     error.out<-import_validation(dat, rdat)
+     error.out<-photoR::import_validation(dat, rdat)
      validate(
        need(length(error.out) == 0,
             message = paste(error.out, collapse = "\n"))
@@ -122,7 +122,7 @@ server<-function(input, output){
       dat<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
       rdat<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
       # check format
-      error.out<-import_validation(dat, rdat)
+      error.out<-photoR::import_validation(dat, rdat)
       validate(
         need(length(error.out) == 0,
              message = paste(error.out, collapse = "\n"))
@@ -145,7 +145,7 @@ reac_func_output<-reactive({
   dat.list <- reac_func_input()
 
   # Error checking for basic data formating
-  error.out <- error_checking(dat=dat.list[[1]], rdat=dat.list[[2]])
+  error.out <- photoR::error_checking(dat=dat.list[[1]], rdat=dat.list[[2]])
 
    validate(
      need(length(error.out) == 0,
