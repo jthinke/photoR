@@ -15,7 +15,7 @@ import_validation(dat, rdat)
 A list of errors in data headings. If no errors, list has length 0.
 }
 \description{
-Function to check input data headers for compatibility with the app. Returns information if required headers are missing. This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
+Function to check input data headers for compatibility with the app. Returns information if required headers are missing. This runs in the background and the user should not need to access this function. To run this file independently, you will need to import your .csv files and ensure the 'DATE" field is formatted as POSIXct.
 }
 \examples{
 import_validation(test_att, test_repro)

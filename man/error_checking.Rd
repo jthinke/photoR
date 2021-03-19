@@ -7,15 +7,15 @@
 error_checking(dat, rdat)
 }
 \arguments{
-\item{dat}{A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
+\item{dat}{A data frame of adult attendance at each nest of interest (attendance data). The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,    SPP, NEST,    DATE, and    MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
 
-\item{rdat}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
+\item{rdat}{A data frame of nest content observations (reproductive data). The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
 }
 \value{
 A list with information about the nature and location (row) of suspected errors in each data file. If no errors are encounterd, list has length 0.
 }
 \description{
-This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered.This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
+This function checks the input data frames for common entry errors and returns information to support the analyst in correcting data entry if errors are encountered. This runs in the background and the user should not need to access this function. To run this file independently, you will need to import your .csv files and ensure the 'DATE" field is formatted as POSIXct.
 }
 \examples{
 error_checking(test_att, test_repro)

@@ -1,9 +1,9 @@
 #' error_checking
 #'
-#' This function checks the input data frames for common entry errors and returns information to support the analyst in cleaning the data files if errors are encountered.This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
+#' This function checks the input data frames for common entry errors and returns information to support the analyst in correcting data entry if errors are encountered. This runs in the background and the user should not need to access this function. To run this file independently, you will need to import your .csv files and ensure the 'DATE" field is formatted as POSIXct.
 #'
-#' @param dat A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
-#' @param rdat A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
+#' @param dat A data frame of adult attendance at each nest of interest (attendance data). The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
+#' @param rdat A data frame of nest content observations (reproductive data). The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
 #
 #'
 #' @return A list with information about the nature and location (row) of suspected errors in each data file. If no errors are encounterd, list has length 0.
@@ -12,60 +12,12 @@
 #' error_checking(test_att, test_repro)
 error_checking<-function(dat, rdat){
 # this function created to run basic checks on data formatting to help analysts
-#Dt<-"%m/%d/%Y"
-
-#dat<-read.csv(file="test_att.csv", stringsAsFactors=FALSE, header=TRUE)
-#dat$DATE<-lubridate::ymd(paste(dat$YR, dat$MON, dat$DAY), tz="GMT")
-#dat$DATE<-as.POSIXct(strptime(dat$DATE, format=Dt), tz="GMT")
-#rdat<-read.csv(file="test_repro.csv", stringsAsFactors=FALSE, header=TRUE)
-#rdat$DATE<-lubridate::ymd(paste(rdat$YR, rdat$MON, rdat$DAY), tz="GMT")
-#rdat$DATE<-as.POSIXct(strptime(rdat$DATE, format=Dt), tz="GMT")
-  # for testing
-
+# for testing
 ticker<-1
 # add index for identifying row in main data
 dat$INDEX<-1:length(dat$YEAR)
 # create output holder
 out<-list()
-# check column headers
-# attendance data must have the following
-
-#Val_ok<-c("YEAR", "CAMERA","NEST", "SPP", "DATE", "YR","MON", "DAY", "MAXN")
-#ttt<-Val_ok%in%names(dat)
-#if(ttt[5]==TRUE){
-#  # if a valid 'DATE' Header is present, assume that YR, MON, and DAY are implied and absence is not an error
-#  dat1Names<-c(names(dat), "YR", "MON", "DAY")
-#  tt<-Val_ok%in%dat1Names
-#} else {
-#  tt<-ttt
-#}
-#bad_val<-which(tt==FALSE)
-#if(length(bad_val)>0){
-#  nerror<-length(bad_val)
-#  for(i in 1:nerror){
-#    out[[ticker]]<-paste("Missing header '", Val_ok[bad_val[i]], "' in the attendance data", sep="")
-#    ticker<-ticker+1
-#  }
-#}
-
-#Val_ok<-c("YEAR", "CAMERA","NEST", "SPP", "DATE", "YR","MON", "DAY", "COPULATION","LAY", "MAXE","HATCH","MAXC", "CRECHE")
-#ttt<-Val_ok%in%names(rdat)
-#if(ttt[5]==TRUE){
-  # if a valid 'DATE' Header is present, assume that YR, MON, and DAY are implied and absence in not an error
-#  dat1Names<-c(names(rdat), "YR", "MON", "DAY")
-#  tt<-Val_ok%in%dat1Names
-#} else {
-#  tt<-ttt
-#}
-#bad_val<-which(tt==FALSE)
-#if(length(bad_val)>0){
-#  nerror<-length(bad_val)
-#  for(i in 1:nerror){
-#    out[[ticker]]<-paste("Missing header '", Val_ok[bad_val[i]], "' in the nest content data", sep="")
-#    ticker<-ticker+1
-#  }
-#}
-# common error checking
 # are all dates valid?
 invalidDate<-which(is.na(dat$DATE))
 if(length(invalidDate)>0){
@@ -84,7 +36,6 @@ if(length(invalidDate)>0){
     ticker<-ticker+1
   }
 }
-
 # now look for repeated dates within each nest in the attendance data
 cams<-unique(dat$CAMERA)
 ncams<-length(cams)
@@ -105,7 +56,6 @@ for(i in 1:ncams){
     }
   }
 }
-# now do the same for the repro data set
 # now look for repeated dates within each nest in the attendance data
 cams<-unique(rdat$CAMERA)
 ncams<-length(cams)
@@ -163,7 +113,6 @@ if(length(bad_val)>0){
     ticker<-ticker+1
   }
 }
-
 #
 # allowed values for hatch ay are 1 and NA
 Val_ok<-c(1,NA)
