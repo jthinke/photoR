@@ -8,6 +8,7 @@
 #' The app will iteratively check the input data before processing. It first calls 'import_validation()' to address errors in the headers supplied in the data. Once error free, it then calls 'error_checking' to assess potential errors in the data. The user must fix any identified errors before processing can proceed.
 #'
 #' Protocols for data preparation are in progress, but available from the author upon request.
+#'
 #' @return A dataframe for download as a .csv file. The data are summarized  and formatted to fit specific CEMP Protocol data forms (www.ccamlr.org).
 #' @usage photoR()
 #' @export
