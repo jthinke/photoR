@@ -1,4 +1,4 @@
-library(shiny, lubridate)
+library(shiny, lubridate, photoR)
 ui<-fluidPage(
   tags$head(
     tags$style(HTML("
