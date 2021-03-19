@@ -14,7 +14,9 @@ ui<-fluidPage(
       h1("photoR", style="text-align:center"),
       p(style="text-align:center", "A web-based version of R code originally provided ",
       a("here", href="https://doi.org/10.1111/2041-210X.13015")),
-      p(style="text-align:center","Last updated on 27 April 2020")
+      p(style="text-align:center", "An R package of `photoR` is available ",
+      a("here", href="https://www.github.com/jthinke/photoR")),
+      p(style="text-align:center","Last updated on 19 March 2021")
     )
   )
   ),

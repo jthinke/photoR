@@ -5,9 +5,10 @@
 #' @param dat1 A data frame of adult attendance at each nest of interest. The data from should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY,COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
 #' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
 #'
-#' @return A list of errors in data headings
+#' @return A list of errors in data headings. If no errors, list has length 0.
 #'
-#' @usage import_validation(dat1, dat2)
+#' @examples
+#' import_validation(test_att, test_repro)
 import_validation<-function(dat1, dat2){
   ticker<-1
   # create output holder

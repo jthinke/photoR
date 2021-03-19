@@ -6,9 +6,10 @@
 #' @param dat2 A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
 #
 #'
-#' @return A list with information about the nature and location (row) of suspected errors in each data file
+#' @return A list with information about the nature and location (row) of suspected errors in each data file. If no errors are encounterd, list has length 0.
 #'
-#' @usage error_checking(dat1, dat2)
+#' @examples
+#' error_checking(test_att, test_repro)
 error_checking<-function(dat1, dat2){
 # this function created to run basic checks on data formatting to help analysts
 #Dt<-"%m/%d/%Y"
