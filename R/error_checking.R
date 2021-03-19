@@ -40,8 +40,8 @@ if(length(invalidDate)>0){
 cams<-unique(dat$CAMERA)
 ncams<-length(cams)
 for(i in 1:ncams){
-  dat<-dat[dat$CAMERA==cams[i],]
-  nests<-unique(dat$NEST)
+  dat1<-dat[dat$CAMERA==cams[i],]
+  nests<-unique(dat1$NEST)
   nnests<-length(nests)
   for(k in 1:nnests){
     ndat<-dat[dat$NEST==nests[k],]
@@ -56,14 +56,14 @@ for(i in 1:ncams){
     }
   }
 }
-# now look for repeated dates within each nest in the attendance data
+# now look for repeated dates within each nest in the nest content data
 cams<-unique(rdat$CAMERA)
 ncams<-length(cams)
 # add index for identifying row in main data
 rdat$INDEX<-1:length(rdat$YEAR)
 for(i in 1:ncams){
-  dat<-rdat[rdat$CAMERA==cams[i],]
-  nests<-unique(dat$NEST)
+  dat2<-rdat[rdat$CAMERA==cams[i],]
+  nests<-unique(dat2$NEST)
   nnests<-length(nests)
   for(k in 1:nnests){
     ndat<-dat[dat$NEST==nests[k],]
