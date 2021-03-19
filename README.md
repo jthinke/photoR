@@ -4,7 +4,7 @@ Code was last updated 19 May 2021 with numerous updates to build an R package.
 
 ## Quick instructions 
 
-Simple instruction for running the photoR app from RStudio (1-7) or online [here](https://jefferson.shinyapps.io/photor2/) (4-7). Note the online version has not yet been updated, but is functionally equivalent to the version available here. 
+Here are some simple instruction for running the photoR app from RStudio (points 1-7) or online [here](https://jefferson.shinyapps.io/photor2/) (points 4-7).
 
 1) install the 'shiny' and 'lubridate' and 'devtools' packages from a CRAN repository, if needed, and attach them. 
  ```r
@@ -20,13 +20,13 @@ library(photoR)
 ```
 3) run the app with `photoR()`
 
-4) There will be 2 data files to load. The first is the attendance data (e.g., [test_att.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_att.csv)) and the second is reproductive data (e.g, [test_repro.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_repro.csv)). Navigate to where the data are housed locally for you and allow upload. The app will automatically identify errors in your data formatting and print messages to the screen to help identify where data errors are likely.
+4) There will be 2 data files to load. The first is the attendance data (an example: [test_att.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_att.csv)) and the second is reproductive data (an example: [test_repro.csv](https://github.com/jthinke/photoR/blob/master/inst/extdata/test_repro.csv)). To load your own, navigate to where the data are housed and allow upload. The app will automatically and iteritively identify errors in your data formatting and print messages to the screen to help identify where data errors are likely. Please fix all data errors to enable analysis.
 
-5 Specify how the date field is input in the raw data files you just specified. For the test data linked above, it is "m/d/y'.
+5) Specify how the date field is input in the raw data files you just specified. For the test data linked above, it is "m/d/y'.
 
-6 Select which data output you want to see. 
+6) Select which data output you want to see. 
 
-7 Use the download button to download results.
+7) Use the download button to download results.
 
 ## Reference
 
