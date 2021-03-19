@@ -7,13 +7,12 @@
 photoR()
 }
 \value{
-A dataframe for download as a .csv file. The data can be summarized  and formatted to fit specific CEMP Protocol data forms (www.ccamlr.org).
-#' @usage photoR()
+A dataframe for download as a .csv file. The data are summarized  and formatted to fit specific CEMP Protocol data forms (www.ccamlr.org).
 }
 \description{
-Function to process data on adult attendance at their nest and nest contents to estimate phenological events and reproductive success of breeding birds.
+photoR runs the ShinyApp to interactively process data on adult attendance at their nest and nest contents to estimate phenological events and reproductive success of breeding birds.
 Running the photoR app will spawn an interactive web page that allows the user to upload two data sets, correctly formatted and in a .csv format.
 The attendance data should have the following headers (case sensitive):SPLIT_YEAR, ROOKERY, COLONY, CAMERA,	SPP, NEST,	DATE, and	MAXN. Note that DATE can be specified in any way (default is for m/d/y), or as separate columns named DAY, MON, YR.
 The nest content data should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.
-Protocols for data preparation are in progress.
+Protocols for data preparation are in progress, but available from the author upon request.
 }
