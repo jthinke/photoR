@@ -153,7 +153,7 @@ reac_func_output<-reactive({
    )
    )
 
-  out<-phenology_func(dat=dat.list[[1]], rdat=dat.list[[2]], tabletype=input$table_type)
+  out<-photoR::phenology_func(dat=dat.list[[1]], rdat=dat.list[[2]], tabletype=input$table_type)
   out
 })
 output$result<-renderTable({
