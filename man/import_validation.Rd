@@ -12,8 +12,11 @@ import_validation(dat1, dat2)
 \item{dat2}{A data frame of nest content observations. The data frame should have the following headers (case sensitive):SPLIT_YEAR,  ROOKERY,  SPP,  COLONY,  CAMERA,  NEST, DATE,  LAY,  MAXE,  HATCH,  MAXC, and  CRECHE. Note that DATE can be specified in anyway (default is for m/d/y), or as separate columns named DAY, MON, YR.}
 }
 \value{
-A list of errors in data headings
+A list of errors in data headings. If no errors, list has length 0.
 }
 \description{
 Function to check input data headers for compatibility with the app. Returns information if required headers are missing. This runs in the background and you shouldn't need to access this function. To run this file independently, you will need to import the .csv and format the date field to POSIXct appropriately.
+}
+\examples{
+import_validation(test_att, test_repro)
 }
