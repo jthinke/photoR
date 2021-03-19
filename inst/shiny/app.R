@@ -92,10 +92,10 @@ server<-function(input, output){
     req(input$date_format)
     # import, check, and format data based on chosen data format
    if(input$date_format=="Create from 'YR', 'MON', & 'DAY' columns"){
-     dat1<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
-     dat2<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
+     dat<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
+     rdat<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
      # check format
-     error.out<-import_validation(dat1, dat2)
+     error.out<-import_validation(dat, rdat)
      validate(
        need(length(error.out) == 0,
             message = paste(error.out, collapse = "\n"))
@@ -105,8 +105,8 @@ server<-function(input, output){
        need(input$date_format!="None selected",
             message = paste("Select appropriate date format from drop-down menu"))
      )
-     dat1$DATE<-lubridate::ymd(paste(dat1$YR, dat1$MON, dat1$DAY), tz="GMT")
-     dat2$DATE<-lubridate::ymd(paste(dat2$YR, dat2$MON, dat2$DAY), tz="GMT")
+     dat$DATE<-lubridate::ymd(paste(dat$YR, dat$MON, dat$DAY), tz="GMT")
+     rdat$DATE<-lubridate::ymd(paste(rdat$YR, rdat$MON, rdat$DAY), tz="GMT")
 
     } else {
 
@@ -119,10 +119,10 @@ server<-function(input, output){
       if(input$date_format=="y/m/d"){
         Dt<-"%Y/%m/%d"
       }
-      dat1<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
-      dat2<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
+      dat<-read.csv(file=input$attendance$datapath, stringsAsFactors=FALSE, header=TRUE)
+      rdat<-read.csv(file=input$repro$datapath, stringsAsFactors=FALSE, header=TRUE)
       # check format
-      error.out<-import_validation(dat1, dat2)
+      error.out<-import_validation(dat, rdat)
       validate(
         need(length(error.out) == 0,
              message = paste(error.out, collapse = "\n"))
@@ -132,12 +132,12 @@ server<-function(input, output){
         need(input$date_format!="None selected",
              message = paste("Select appropriate date format from drop-down menu"))
       )
-      dat1$DATE<-as.POSIXct(strptime(dat1$DATE, format=Dt), tz="GMT")
+      dat$DATE<-as.POSIXct(strptime(dat$DATE, format=Dt), tz="GMT")
 
-      dat2$DATE<-as.POSIXct(strptime(dat2$DATE, format=Dt), tz="GMT")
+      rdat$DATE<-as.POSIXct(strptime(rdat$DATE, format=Dt), tz="GMT")
     }
     #out
-    list(dat1,dat2)
+    list(dat,rdat)
  })
 reac_func_output<-reactive({
   #output$result<-renderTable({
@@ -145,7 +145,7 @@ reac_func_output<-reactive({
   dat.list <- reac_func_input()
 
   # Error checking for basic data formating
-  error.out <- error_checking(dat1=dat.list[[1]], dat2=dat.list[[2]])
+  error.out <- error_checking(dat=dat.list[[1]], rdat=dat.list[[2]])
 
    validate(
      need(length(error.out) == 0,
