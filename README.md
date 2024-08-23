@@ -8,7 +8,7 @@ Here are some simple instruction for running the photoR app from RStudio (points
 
 1) install the 'shiny' and 'lubridate' and 'devtools' packages from a CRAN repository, if needed, and attach them. 
  ```r
-install.packages(c("shiny", "lubridate", 'devtools')
+install.packages(c("shiny", "lubridate", 'devtools'))
 library(shiny)
 library(lubridate)
 library(devtools)
