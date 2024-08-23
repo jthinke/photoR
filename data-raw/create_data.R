@@ -1,4 +1,4 @@
-## code to prepare `create_data.R` dataset goes here
+## code to prepare `create_data.R` data set goes here
 
 test_att<-read.csv(file="inst/extdata/test_att.csv", stringsAsFactors=FALSE, header=TRUE)
 test_att$DATE<-as.POSIXct(strptime(test_att$DATE, format="%m/%d/%Y"), tz="GMT")
