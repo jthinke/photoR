@@ -4,7 +4,7 @@ Code was last updated 19 May 2021 with numerous updates to build an R package.
 
 ## Quick instructions 
 
-Here are some simple instructions for running the `photoR` app from RStudio (points 1-7) or online [here](https://jefferson.shinyapps.io/photor2/) (points 4-7).
+Here are some simple instructions for running the `photoR` app from RStudio (points 1-7) or online [here](https://jefferson.shinyapps.io/photor2/) (points 4-7). Test
 
 1) install the 'shiny' and 'lubridate' and 'devtools' packages from a CRAN repository, if needed, and attach them. 
  ```r
