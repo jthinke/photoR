@@ -15,7 +15,7 @@ library(remotes)
 ```
 2) install photoR from github and attach
 ```r
-remotes:install_github("jthinke/photoR")
+remotes::install_github("jthinke/photoR")
 library(photoR)
 ```
 3) run the app with `photoR()`
