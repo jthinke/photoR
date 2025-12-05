@@ -11,11 +11,11 @@ Here are some simple instructions for running the `photoR` app from RStudio (poi
 install.packages(c("shiny", "lubridate", 'devtools'))
 library(shiny)
 library(lubridate)
-library(devtools)
+library(remotes)
 ```
 2) install photoR from github and attach
 ```r
-install_github("jthinke/photoR")
+remotes:install_github("jthinke/photoR")
 library(photoR)
 ```
 3) run the app with `photoR()`
